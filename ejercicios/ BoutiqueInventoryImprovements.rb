@@ -1,26 +1,21 @@
+
 class BoutiqueInventory
   attr_reader :items
 
   def initialize(items)
-    @items = items
+    @items = items.map { |item| OpenStruct.new(item) }
 
 
   end
-
 
   def item_names
-    items.map { |item| item[:name] }.sort
-
-    raise "Refactor the code in item_names"
+    items.map(&:name)
   end
+
 
   def total_stock
-    items.sum do |item|
-      item[:quantity_by_size].values.sum
-    end
+    items.map(&:quantity_by_size).map(&:values).sum(&:sum)
 
-    raise "Refactor the code in total_stock"
+
   end
 end
-
-fun = BoutiqueInventory.new()
