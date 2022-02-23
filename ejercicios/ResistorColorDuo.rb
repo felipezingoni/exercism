@@ -11,6 +11,7 @@ class ResistorColorDuo
     'grey'   => '8',
     'white'  => '9'
   }
+
   def self.value(colors)
     colors.first(2).map {|c| COLORS_VALUES[c]}.join.to_i
   end
